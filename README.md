@@ -15,5 +15,6 @@
 1. Create a new notebook in Google Colab
 2. Upload "intents.json" under "content" folder
 3. Copy and paste codes from "ANN_training.py", "chatbot.py" into your notebook (seperate cells!)
-4. Run "ANN_training.py"
-5. Run "chatbot.py"
+4. Comment out the "Use for PyCharm" codes and un-comment the "Use for Google Colab" codes
+5. Run "ANN_training.py"
+6. Run "chatbot.py"
