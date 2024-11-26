@@ -1,5 +1,5 @@
 
-# package version control:
+# package version control for PyCharm:
 # Python == 3.10 (set in environment/interpreter)
 # NumPy == latest (2.1.3 or 1.26.4)
 # NLTK == 3.9.1
