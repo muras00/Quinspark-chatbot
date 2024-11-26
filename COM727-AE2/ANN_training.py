@@ -16,7 +16,7 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from keras.optimizers.legacy import SGD # Use for PyCharm
-# from tensorflow.keras.optimizer import SGD # Use for Google Colab
+# from tensorflow.keras.optimizers import SGD # Use for Google Colab
 
 nltk.download('punkt_tab')
 nltk.download('wordnet')
