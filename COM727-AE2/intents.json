@@ -108,110 +108,68 @@
         },
 
         {"tag": "Frost bite",
-         "patterns": ["How do you treat a Frost bite?", "what to do if i get a Frost bite?", "Which medicine to take if I get a Frost bite?", "How to cure Frost bite?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Heat Exhaustion",
-         "patterns": ["How do you treat Heat Exhaustion?", "what to do if i feel Exhausted due to heat?", "Which medicine to take if I get Exhausted?", "How to cure Heat Exhaustion?"],
-         "responses": [" "],
+         "patterns": ["How do you treat a Frost bite?", "what to do if i get a Frost bite?", "Which medicine to take if I get a Frost bite?", "How to cure Frost bite?","Frostbite"],
+         "responses": ["1)move to a warmer place (if possible) – it's best to avoid walking on frostbitten feet and toes as it can cause further damage. 2)gently remove gloves, boots, rings and any other items of clothing or jewellery around the affected area. 3)replace wet clothing with soft, dry clothing to stop further heat loss. 4)don't rub the affected area or apply direct heat (such as from a fire or heater) as this can cause further injury. "],
          "context_set": ""
         },
 
         {"tag": "Heat Stroke",
          "patterns": ["How do you treat Heat Stroke?", "what to do if i get a Heat Stroke?", "Which medicine to take if I get Stroke?", "How to cure a Heat Stroke?"],
-         "responses": [" "],
+         "responses": ["If someone has heat exhaustion, follow these 4 steps: Move them to a cool place. Remove all unnecessary clothing     like a jacket or socks. Get them to drink a sports or rehydration drink, or cool water. Cool their skin – spray or sponge them with cool water and fan them. Cold packs, wrapped in a cloth and put under the armpits or on the neck are good too. "],
          "context_set": ""
         },
 
         {"tag": "Insect Bites",
          "patterns": ["How do you treat a Insect Bite?", "what to do if a insect bites me?", "Which medicine to take if I get bitten by a insect?", "How to cure insect bite?"],
-         "responses": [" "],
+         "responses": ["put an ice pack wrapped in a cloth or a clean cloth soaked in cold water on the bite or sting for at least 20 minutes, if it's swollen keep the area raised if you can. take painkillers such as paracetamol or ibuprofen if the sting is painful. Use antihistamines to relieve any itching (but do not use antihistamine cream if you had caterpillar hairs on your skin).use a hydrocortisone cream to reduce itching and swelling. do not scratch the bite or sting, as it could get infected. do not use home remedies such as bicarbonate of soda to treat the bite or sting "],
          "context_set": ""
         },
 
         {"tag": "nose bleed",
          "patterns": ["How do you treat a bleeding nose?", "what to do if i my nose is bleeding?", "Which medicine to take if I get nose bleed?", "How to cure nose bleeding?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Pulled Muscle",
-         "patterns": ["How do you treat a Pulled Muscle?", "what to do if my muscle is pulled?", "Which medicine to take if I got pulled muscle?", "How to cure a pulled muscle?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Rectal bleeding",
-         "patterns": ["How do you treat Rectal Bleeding?", "what to do if i get a Rectal Bleeding?", "Which medicine to take if I get Rectal Bleeding?", "How to cure Rectal Bleeding?"],
-         "responses": [" "],
+         "responses": ["If you have a nosebleed, you should: 1)sit down and lean forward, with your head tilted forward and your mouth open 2)pinch your nose just above your nostrils for 10 to 15 minutes 3)breathe through your mouth 4)Holding an icepack (or a bag of frozen peas wrapped in a tea towel) on the top of the nose may help reduce the blood flow. "],
          "context_set": ""
         },
 
         {"tag": "Sun Burn",
          "patterns": ["How do you treat Sun Burn?", "what to do if i get a Sun Burn?", "Which medicine to take if I get Sun Burn?", "How to cure a Sun Burn?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Testicle Pain",
-         "patterns": ["How do you treat Testicle Pain?", "what to do if i get a Testicle Pain?", "Which medicine to take if I get a Testicle Pain?", "How to cure Testicle Pain?"],
-         "responses": [" "],
+         "responses": ["get out of the sun as soon as possible. cool your skin with a cool shower, bath or damp towel (take care not to let a baby or young child get too cold, if treating for a baby). apply aftersun cream or spray. drink plenty of water to cool down and prevent dehydration. take painkillers, such as paracetamol or ibuprofen for any pain. cover sunburnt skin from direct sunlight until skin has fully healed. do not use petroleum jelly on sunburnt skin. do not put ice or ice packs on sunburnt skin. Do not pop any blisters. do not scratch or try to remove peeling skin. "],
          "context_set": ""
         },
 
         {"tag": "Vertigo",
          "patterns": ["How do you treat a Vertigo?", "what to do if i get a Vertigo?", "Which medicine to take if I get Vertigo?", "How to cure a Vertigo?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Normal Bleeding",
-         "patterns": ["How do you treat bleeding?", "what to do if i get a Bleeding?", "Which medicine to take if I get bleeding?", "How to cure Bleeding?"],
-         "responses": [" "],
+         "responses": ["lie still in a quiet, dark room to reduce the spinning feeling. move your head carefully and slowly during daily activities. sit down straight away when you feel dizzy. turn on the lights if you get up at night. use a walking stick if you're at risk of falling. sleep with your head slightly raised on 2 or more pillows. get out of bed slowly and sit on the edge of the bed for a while before standing up. "],
          "context_set": ""
         },
 
         {"tag": "Eye Injury",
          "patterns": ["How do you treat an eye Injury?", "what to do if i get a eye Injury?", "Which medicine to take if I injured my eye?", "How to cure injured eye?"],
-         "responses": [" "],
+         "responses": ["wash your eye with clean water if there's something in it. follow the advice on the packaging if any cosmetics or household products get in your eyes. take painkillers like paracetamol or ibuprofen to help ease any pain or discomfort. do not try to remove any object that's pierced your eye. do not touch or rub your eye until it's better. do not wear make-up around your eye until it's better. do not wear contact lenses until your eye is better. "],
          "context_set": ""
         },
 
         {"tag": "Chemical Burn",
          "patterns": ["How do you treat a chemical burn?", "what to do if i get a Chemical Burn?", "Which medicine to take if I get burn due to chemicals?", "How to cure Chemical Burn?"],
-         "responses": [" "],
+         "responses": ["Call 999 for medical help. Wear gloves to protect yourself from the chemical when helping yourself or someone else, if possible. Carefully remove any clothing that has the chemical on it, if possible. Carefully brush dry chemicals off the skin. Put the affected area under cool or lukewarm running water or pour lots of water over it for about 1 hour. "],
          "context_set": ""
         },
 
         {"tag": "Poison",
          "patterns": ["How do you treat a Poison?", "what to do if i get Poison?", "Which medicine to take if I am poisoned?", "How to cure Poisoning?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Teeth",
-         "patterns": ["How do you treat broken Teeth ?", "what to do if my Teeth got broken?", "Which medicine to take if I get broken teeth?", "cure broken teeth?"],
-         "responses": [" "],
+         "responses": ["If you suspect that someone has taken an overdose or has been poisoned, do not try to treat them yourself. Get medical help immediately. If they do not appear to be seriously ill, call NHS 111 for advice. If they're showing signs of being seriously ill, such as being sick, loss of consciousness, drowsiness or seizures (fits), call 999 to request an ambulance or take the person to your local A&E department. "],
          "context_set": ""
         },
 
         {"tag": "seizure",
          "patterns": ["How do you treat a seizure?", "what to do if i get a seizure?", "Which medicine to take if I get seizure?", "How to cure seizure?"],
-         "responses": [" "],
-         "context_set": ""
-        },
-
-        {"tag": "Head Injury",
-         "patterns": ["How do you treat a head Injury?", "what to do if i get a Head Injury?", "Which medicine to take if I get injured in the head?", "How to cure Head Injury?"],
-         "responses": [" "],
+         "responses": ["If you're with someone having a seizure: only move them if they're in danger, such as near a busy road or hot cooker. Cushion their head if they're on the ground. Loosen any tight clothing around their neck, such as a collar or tie, to aid breathing. Turn them on to their side after their convulsions stop – read more about the recovery position. Stay with them and talk to them calmly until they recover. Note the time the seizure starts and finishes. Call 999 and ask for an ambulance if: 1)it's the first time someone has had a seizure 2)the seizure lasts longer than is usual for them 3)the seizure lasts more than 5 minutes, if you do not know how long their seizures usually last 4)the person does not regain full consciousness, or has several seizures without regaining consciousness 5)the person is seriously injured during the seizure 6)the person has difficulty breathing after the seizure "],
          "context_set": ""
         },
 
         {"tag": "Fainting",
          "patterns": ["How do you treat Faint?", "what to do if i feel like Fainting?", "Which medicine to take if I get a Faint?", "How to cure Fainting?"],
-         "responses": [" "],
+         "responses": ["If you're with someone who has fainted, try to keep calm. If you can, lay them on their back and raise their legs. If they’re pregnant (especially if they’re more than 28 weeks pregnant), it’s better to lay them on their side. "],
          "context_set": ""
         },
 
@@ -226,13 +184,13 @@
          "responses": ["1)Keeping hydrated is absolutely vital to help 'flush' out the cold, as well as to break down congestion and keep your throat lubricated. 2)Vitamin C is extremely helpful when fighting infection, so at the first sign of a cold be sure to increase your intake by eating plenty of berries, citrus fruits, papayas, broccoli and red peppers which will help keep you protected. 3)When it comes to combating a cold,Vitamin D is essential in helping to regulate immune response."],
          "context_set": ""
         },
-
+	
 	{"tag": "Rash",
          "patterns": ["How do you treat Rashes?", "what to do if i get a Rash?", "Which medicine to take if I have a Rash?", "How to cure Rash?", "rash", "rashes"],
          "responses": ["1)Olive oil helps in healing and promotes skin renewal given it is packed with vitamin E and antioxidants. It also soothes the skin and reduces itching. 2)Baking soda is useful in drying skin rashes as also in relieving itching and inflammation. 3)Aloe Vera,Thanks to its antibacterial, antifungal, anti-inflammatory and emollient properties, aloe vera is excellent for treating a number of skin ailments including rashes as also soothing the skin."],
          "context_set": ""
         },
-
+	
 	{"tag": "snake bite",
          "patterns": ["How do you treat a snake bite?", "what to do if i get a snake bite?", "Which medicine to take if I get a snake bite?", "How to cure snake bite?", "i got bit by a snake"],
          "responses": ["While waiting for medical help: 1)Move the person beyond striking distance of the snake. 2)Have the person lie down with wound below the heart. 3)Keep the person calm and at rest, remaining as still as possible to keep venom from spreading. 4)Cover the wound with loose, sterile bandage. 5)Remove any jewelry from the area that was bitten. 6)Remove shoes if the leg or foot was bitten."],
