@@ -1,5 +1,5 @@
 
-COM727 AE2 application - package versions
+COM727 AE2 application - package versions on PyCharm
 
 Python == 3.10 (set in environment/interpreter)
 
