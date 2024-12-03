@@ -13,7 +13,7 @@
 ## How to access the chatbot application on Google Colab:
 
 1. Create a new notebook in Google Colab
-2. Upload "intents.json" under "content" folder
+2. Upload "intents.json" and "health_tips.json" under "content" folder in Google Colab
 3. Copy and paste codes from "ANN_training.py", "chatbot.py" into your notebook (seperate cells!)
 4. Comment out the "Use for PyCharm" codes and un-comment the "Use for Google Colab" codes
 5. Run "ANN_training.py"
