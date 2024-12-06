@@ -11,7 +11,7 @@ TensorFlow == 2.14.1
 
 Keras == 2.14.0 (comes installed with TensorFlow)
 
-
+customtkinter == latest
 
 --------------------------------------------------------------
 
@@ -33,4 +33,6 @@ HOW TO: create COM727-AE2 Anaconda environment
 
 7. Enter prompt "pip install tensorflow==2.14.1"
 
-8. Enter prompt "exit"
+8. Enter prompt "pip install customtkinter"
+
+9. Enter prompt "exit"
