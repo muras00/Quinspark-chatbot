@@ -13,6 +13,10 @@ Keras == 2.14.0 (comes installed with TensorFlow)
 
 customtkinter == latest
 
+Googletrans == 3.1.0a0
+
+
+
 --------------------------------------------------------------
 
 
