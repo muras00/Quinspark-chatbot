@@ -12,9 +12,62 @@ import json
 import pickle
 import numpy as np
 import nltk
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+import chatbot_emergency_map
+import pandas as pd
+import joblib
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 from googletrans import Translator
+import webbrowser
+import naive_bayes_model  # Import the module
+import nltk
+import sys
+
+from integrated_ai_chatbot import (
+    load_dataset,
+    run_deep_learning_model,
+    preprocess_data,
+    prepare_features_target,
+    ensure_numeric,
+    rnn_health_prediction,
+    dbscan_clustering,
+    hierarchical_clustering,
+    semi_supervised_learning,
+    nlp_user_symptoms,
+    sentiment_analysis
+)
+import nltk
+from googletrans import Translator
+
+from integrated_ai_chatbot import train_nlp_model
+
+
+def symptom_checker_naive_bayes():
+    try:
+        print("\nRunning Symptom Checker using Naive Bayes...")
+        naive_bayes_model.run_naive_bayes()  
+    except Exception as e:
+        print(f"An error occurred while running Naive Bayes: {e}")
+
+medications = json.loads(open('medications.json').read())
+symptom_data = pd.read_csv("symptom_illness_dataset.csv")
+mental_health_tips = pd.read_csv("mental_health_tips_extended.csv")
+model = joblib.load("symptom_checker_model.pkl")
+
+
+print("Loading the trained symptom prediction model...")
+model = joblib.load("best_enhanced_symptom_model.pkl")
+comparison_results = joblib.load("model_comparison_results.pkl")  
+
+scaler = joblib.load("scaler.pkl")
+best_models = joblib.load("best_models.pkl")
+label_encoder_y = joblib.load("label_encoder_y.pkl")  
 
 lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('intents.json').read())
@@ -40,13 +93,13 @@ language_list = {'afrikaans': 'af', 'albanian': 'sq', 'amharic': 'am', 'arabic':
                   'spanish': 'es', 'sundanese': 'su', 'swahili': 'sw', 'swedish': 'sv', 'tajik': 'tg', 'tamil': 'ta', 'telugu': 'te', 'thai': 'th', 'turkish': 'tr',
                   'ukrainian': 'uk', 'urdu': 'ur', 'uyghur': 'ug', 'uzbek': 'uz', 'vietnamese': 'vi', 'welsh': 'cy', 'xhosa': 'xh', 'yiddish': 'yi', 'yoruba': 'yo', 'zulu': 'zu'}
 
-#Clean up the sentences
+
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words]
     return sentence_words
 
-#Converts the sentences into a bag of words
+
 def bag_of_words(sentence):
     sentence_words = clean_up_sentence(sentence)
     bag = [0] * len(instructions_words)
@@ -86,6 +139,22 @@ def display_menu():
 [4] Display health tips
 [5] Display resource links
 [6] Language support
+[7] Display emergency services on map
+[8] Find medications for a condition
+[9] Symptom checker (AI-based prediction)
+[10] Mental health support
+[11] Display model comparison results
+[12] Dynamic model selection for predictions
+[13] Analyze patient clusters using K-Means
+[14] Symptom checker using Naive Bayes
+[15] Forecast health trends using Time Series
+[16] Deep Learning Health Prediction
+[17] DBSCAN Clustering
+[18] Hierarchical Clustering
+[19] Semi-Supervised Learning
+[20] NLP for User Symptoms
+[21] Sentiment Analysis
+[22] Train NLP
 [X] Exit application
 
 """, dest=lang).text, "\n")
@@ -93,6 +162,118 @@ def display_menu():
     return selected_option
 
 print("QuinSpark Chatbot is here!\n")
+
+def run_deep_learning_model():
+    file_path = "Disease_symptom_and_patient_profile_dataset.csv"
+    data = load_dataset(file_path)
+    data = preprocess_data(data)
+    X, y = prepare_features_target(data)
+    X = ensure_numeric(X)
+    rnn_health_prediction(X, y)
+
+def display_model_comparison():
+    print("\nModel Comparison Results:")
+    print("Model Performance Metrics (Accuracy and ROC-AUC):\n")
+    for model_name, metrics in comparison_results.items():
+        print(f"{model_name}: Accuracy = {metrics['Accuracy']:.2f}, ROC-AUC = {metrics['ROC-AUC']:.2f}")
+
+    
+    while True:
+        return_choice = input("Enter 'X' to return to the main menu: ").strip().lower()
+        if return_choice == 'x':
+            break
+        else:
+            print("Invalid input. Please enter 'X' to return to the main menu.")
+
+
+
+def dynamic_model_selection():
+    print("\nWelcome to the Dynamic Symptom Checker!")
+    print("Please select a model for predictions:")
+
+    
+    for idx, model_name in enumerate(best_models.keys(), 1):
+        print(f"[{idx}] {model_name}")
+
+    
+    try:
+        model_choice = int(input("Enter the number corresponding to your model choice: ").strip())
+        model_names = list(best_models.keys())
+        selected_model_name = model_names[model_choice - 1]
+        model = best_models[selected_model_name]
+        print(f"You have selected: {selected_model_name}\n")
+    except (ValueError, IndexError):
+        print("Invalid input. Defaulting to Random Forest.")
+        model = best_models["Random Forest"]
+
+    
+    while True:
+        try:
+            print("\nPlease answer the following questions with 'Yes' or 'No'.")
+            fever = input("Do you have Fever? (Yes/No): ").strip().lower()
+            cough = input("Do you have Cough? (Yes/No): ").strip().lower()
+            fatigue = input("Do you have Fatigue? (Yes/No): ").strip().lower()
+            breathing = input("Do you have Difficulty Breathing? (Yes/No): ").strip().lower()
+            age = int(input("Enter your age (e.g., 25): ").strip())
+            gender = input("Enter your gender (Male/Female): ").strip().lower()
+            blood_pressure = input("Blood Pressure (Low/Normal/High): ").strip().lower()
+            cholesterol = input("Cholesterol Level (Low/Normal/High): ").strip().lower()
+
+            
+            symptom_map = {"yes": 1, "no": 0}
+            gender_map = {"male": 1, "female": 0}
+            bp_map = {"low": 0, "normal": 1, "high": 2}
+            cholesterol_map = {"low": 0, "normal": 1, "high": 2}
+
+            user_input = {
+                'Fever': symptom_map.get(fever, 0),
+                'Cough': symptom_map.get(cough, 0),
+                'Fatigue': symptom_map.get(fatigue, 0),
+                'Difficulty Breathing': symptom_map.get(breathing, 0),
+                'Age': age,
+                'Gender': gender_map.get(gender, 0),
+                'Blood Pressure': bp_map.get(blood_pressure, 1),
+                'Cholesterol Level': cholesterol_map.get(cholesterol, 1)
+            }
+
+            
+            user_input_df = pd.DataFrame([user_input])
+            user_input_scaled = scaler.transform(user_input_df)
+
+            
+            prediction_proba = model.predict_proba(user_input_scaled)
+            predicted_label = np.argmax(prediction_proba[0])
+            confidence = prediction_proba[0][predicted_label]
+            predicted_disease = label_encoder_y.inverse_transform([predicted_label])[0]
+
+            
+            print(f"\nPredicted Illness: {predicted_disease}")
+            print(f"Prediction Confidence: {confidence * 100:.2f}%")
+            print("Note: This is an AI-based prediction. Please consult a healthcare professional.\n")
+
+            
+            exit_choice = input("Enter 'X' to return to the main menu, or press Enter to check again: ").strip().lower()
+            if exit_choice == 'x':  
+                break
+
+        except Exception as e:
+            print(f"Error: {e}. Please try again.\n")
+
+def analyze_clusters():
+    print("\nPerforming Clustering Analysis...")
+    exec(open("clustering_analysis.py").read())
+
+def symptom_checker_naive_bayes():
+    print("\nRunning Symptom Checker using Naive Bayes...")
+    from naive_bayes_model import main as run_naive_bayes
+
+    run_naive_bayes()
+
+def forecast_health_trends():
+    print("\nForecasting Health Trends...")
+    from time_series_forecasting import forecast_health_trends_interactive
+    forecast_health_trends_interactive()
+
 
 # Main - loop starts here
 while True:
@@ -194,6 +375,8 @@ Enter \"X\" to go back to menu
           print("\n", translator.translate("Going back to menu...", dest=lang).text, "\n")
           break
 
+
+
     # Display resource links
     elif selected_option == '5':
       while True:
@@ -262,7 +445,303 @@ Enter \"X\" to go back to menu
           print("\n", translator.translate("Please enter a valid language name", dest=lang).text, "\n")
           continue
 
-    # Exit application
+    
+    elif selected_option == '7':
+        location_name = input(translator.translate("Enter the location (e.g., London): ", dest=lang).text).strip()
+        if not location_name:
+            print(translator.translate("Invalid input. Please try again.", dest=lang).text)
+            continue
+
+        print(translator.translate("Generating map for emergency services, please wait...", dest=lang).text)
+        map_image_path = chatbot_emergency_map.load_emergency_services_map(location_name)
+
+        
+        if "Sorry" in map_image_path:
+            print(translator.translate(map_image_path, dest=lang).text)
+        else:
+            print(translator.translate(f"Here is the map of emergency services in {location_name}.", dest=lang).text)
+            print(f"📍 Opening the map...")
+
+            
+            if map_image_path.endswith(".png"):
+                os.startfile(map_image_path)  
+            elif map_image_path.endswith(".html"):
+                webbrowser.open_new_tab(f"file://{os.path.abspath(map_image_path)}")  # Open in browser
+
+    
+    elif selected_option == '8':
+        while True:
+            condition = input(
+                translator.translate("Enter the condition (e.g., fever, cough, headache) or 'X' to go back: ",
+                                     dest=lang).text).lower()
+
+            if condition == 'x':  
+                print(translator.translate("Going back to the main menu...", dest=lang).text)
+                break
+
+            if condition in medications:
+                meds = medications[condition]
+                response = translator.translate(f"For {condition}, you can take: {', '.join(meds)}.", dest=lang).text
+            else:
+                response = translator.translate("Sorry, I don't have information for that condition.", dest=lang).text
+
+            print(f"\nBot: {response}\n")
+
+    
+
+    
+    elif selected_option == '9':
+        print("\nWelcome to the AI-Based Symptom Checker!")
+        print("Please answer the following questions with 'Yes' or 'No'.")
+
+        while True:
+            try:
+                
+                fever = input("Do you have Fever? (Yes/No): ").strip().lower()
+                cough = input("Do you have Cough? (Yes/No): ").strip().lower()
+                fatigue = input("Do you have Fatigue? (Yes/No): ").strip().lower()
+                breathing = input("Do you have Difficulty Breathing? (Yes/No): ").strip().lower()
+                age = int(input("Enter your age (e.g., 25): ").strip())
+                gender = input("Enter your gender (Male/Female): ").strip().lower()
+                blood_pressure = input("Blood Pressure (Low/Normal/High): ").strip().lower()
+                cholesterol = input("Cholesterol Level (Low/Normal/High): ").strip().lower()
+
+                
+                symptom_map = {"yes": 1, "no": 0}
+                gender_map = {"male": 1, "female": 0}
+                bp_map = {"low": 0, "normal": 1, "high": 2}
+                cholesterol_map = {"low": 0, "normal": 1, "high": 2}
+
+                user_input = {
+                    'Fever': symptom_map.get(fever, 0),
+                    'Cough': symptom_map.get(cough, 0),
+                    'Fatigue': symptom_map.get(fatigue, 0),
+                    'Difficulty Breathing': symptom_map.get(breathing, 0),
+                    'Age': age,
+                    'Gender': gender_map.get(gender, 0),
+                    'Blood Pressure': bp_map.get(blood_pressure, 1),
+                    'Cholesterol Level': cholesterol_map.get(cholesterol, 1)
+                }
+
+                
+                user_input_df = pd.DataFrame([user_input])
+                user_input_scaled = scaler.transform(user_input_df)
+
+                
+                prediction = model.predict(user_input_scaled)
+                predicted_label = prediction[0]
+                predicted_disease = label_encoder_y.inverse_transform([predicted_label])[0]
+
+                
+                prediction_proba = model.predict_proba(user_input_scaled)
+                predicted_label = np.argmax(prediction_proba[0])  
+                confidence = prediction_proba[0][predicted_label]  
+                predicted_disease = label_encoder_y.inverse_transform([predicted_label])[0]
+                
+                if confidence < 0.5:
+                    print(
+                        "The model is uncertain about the diagnosis. Please consult a healthcare professional for further evaluation.")
+
+                
+                print(f"\nPredicted Illness: {predicted_disease}")
+                print(f"Prediction Confidence: {confidence * 100:.2f}%")
+                print(
+                    "Note: This is an AI-based prediction. Please consult a healthcare professional for an accurate diagnosis.\n")
+
+
+
+                
+                exit_choice = input(
+                    "Enter 'X' to return to the main menu, or press Enter to check again: ").strip().lower()
+                if exit_choice == 'x':
+                    break
+
+            except Exception as e:
+                print(f"Error: {e}. Please try again with valid inputs.\n")
+
+    
+    elif selected_option == '10':
+        while True:
+            condition = input(translator.translate(
+                "Enter a condition (e.g., stress, anxiety, depression, grief, loneliness) or 'X' to go back: ",
+                dest=lang).text).lower()
+
+            if condition == 'x':  
+                print(translator.translate("Going back to the main menu...", dest=lang).text)
+                break
+
+            
+            tips = mental_health_tips[mental_health_tips['Condition'].str.lower() == condition]
+
+            if not tips.empty:
+                tip = tips.sample(1)['Tip'].values[0]  
+                print(translator.translate(f"Here’s a tip for {condition}: {tip}", dest=lang).text)
+            else:
+                print(translator.translate("Sorry, I don't have tips for that condition. Please try another.",
+                                           dest=lang).text)
+    elif selected_option == '11':
+        
+        display_model_comparison()
+
+
+
+    elif selected_option == '12':
+        
+        dynamic_model_selection()
+
+
+    elif selected_option == '13':
+
+        analyze_clusters()
+
+    elif selected_option == '14':
+
+        symptom_checker_naive_bayes()
+
+
+
+    elif selected_option == "15":
+
+        forecast_health_trends()
+
+    if selected_option == "16":
+        run_deep_learning_model()
+
+    elif selected_option == '17':
+
+        file_path = "Disease_symptom_and_patient_profile_dataset.csv"
+
+        data = load_dataset(file_path)
+
+        data = preprocess_data(data)
+
+        X, _ = prepare_features_target(data)
+
+        dbscan_clustering(X)
+
+    elif selected_option == '18':
+
+        file_path = "Disease_symptom_and_patient_profile_dataset.csv"
+
+        data = load_dataset(file_path)
+
+        data = preprocess_data(data)
+
+        X, _ = prepare_features_target(data)
+
+        hierarchical_clustering(X)
+
+    elif selected_option == '19':
+
+        file_path = "Disease_symptom_and_patient_profile_dataset.csv"
+
+        data = load_dataset(file_path)
+
+        data = preprocess_data(data)
+
+        X, y = prepare_features_target(data)
+
+        semi_supervised_learning(X, y)
+
+
+
+
+
+
+
+
+
+    elif selected_option == '20':
+
+        while True:
+
+            user_input = input("\nEnter your symptoms (type 'X' to return to the main menu): ").strip()
+
+            if user_input.lower() == 'x':
+                print("Returning to the main menu...\n")
+
+                break
+
+            
+
+            predicted_condition = nlp_user_symptoms()
+
+            if predicted_condition:  
+
+                print(f"\nBased on your symptoms, the predicted condition is: **{predicted_condition}**")
+
+                
+
+                more_info = input("Would you like to know more about this condition? (Yes/No): ").strip().lower()
+
+                if more_info == 'yes':
+
+                    interactive_conversation(predicted_condition)
+
+                elif more_info == 'no':
+
+                    print("Alright! Let me know if you need anything else.")
+
+            else:
+
+                print("Could not predict a condition. Please try again or train the model using option 22.")
+
+
+
+
+
+    elif selected_option == '21':
+
+        while True:
+
+            print("\nRunning Sentiment Analysis...")
+
+            user_input = input("Enter your thoughts or feedback (type 'X' to return to the main menu): ").strip()
+
+            
+
+            if user_input.lower() == 'x':
+                print("Returning to the main menu...\n")
+
+                break
+
+            
+
+            from textblob import TextBlob
+
+            analysis = TextBlob(user_input)
+
+            polarity = analysis.sentiment.polarity
+
+            subjectivity = analysis.sentiment.subjectivity
+
+            
+
+            if polarity > 0:
+
+                sentiment = "Positive"
+
+            elif polarity < 0:
+
+                sentiment = "Negative"
+
+            else:
+
+                sentiment = "Neutral"
+
+            
+
+            print(f"\nPolarity: {polarity:.2f} | Subjectivity: {subjectivity:.2f}")
+
+            print(f"Sentiment: {sentiment}")
+
+
+    elif selected_option == "22":
+
+        train_nlp_model()
+
+
+    
     elif selected_option == 'X':
       print(translator.translate("Application shutting down...", dest=lang).text)
       break
@@ -273,3 +752,4 @@ Enter \"X\" to go back to menu
 # Test case: Any messages with "Cold" intent is not recognized -> fixed by adding the word "cold" in the intents.json
 # Test case: Any messages with "Rash" intent is not recognized -> fixed by adding the words "rash" and "rashes" in the intents.json
 # Test case: Messages for "Burn" intent returns "Sun burn" messages
+

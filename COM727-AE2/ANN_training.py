@@ -74,7 +74,20 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 # gradient_descent_v2.
-sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True) # Use for PyCharm
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers.schedules import ExponentialDecay
+
+# Use a learning rate schedule to simulate "decay"
+lr_schedule = ExponentialDecay(
+    initial_learning_rate=0.01,
+    decay_steps=1000,
+    decay_rate=0.96,
+    staircase=True
+)
+
+sgd = SGD(learning_rate=lr_schedule, momentum=0.9, nesterov=True)
+
+ # Use for PyCharm
 #sgd = SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True) # Use for Google Colab
 #model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy']) # Use for Google Colab
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy']) # Use for PyCharm
