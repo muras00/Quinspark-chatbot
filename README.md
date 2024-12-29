@@ -1,5 +1,9 @@
 # COM727-AE2
 
+## Clone the Repository
+git clone https://github.com/2muras86/COM727-AE2.git
+cd COM727-AE2
+
 ## How to access the chatbot application on PyCharm:
 
 1. Create a project in PyCharm
