@@ -8,24 +8,24 @@ cd COM727-AE2
 ## How to access the chatbot application on PyCharm:
 
 1. Create a project in PyCharm
-2. Create an appropriate interpreter / environment (refer to "package_versions.txt")
-3. Copy and paste "ANN_training.py", "chatbot.py", "intents.json" into your project
-4. Run "ANN_training.py"
-5. Run "python train_symptom_model.py|
-6. Run "chatbot.py"
+2. Create an appropriate interpreter / environment according to the following package versions:
+
+* Python == 3.10 (set in environment/interpreter)
+* NumPy == latest (2.1.3 or 1.26.4)
+* NLTK == 3.9.1
+* TensorFlow == 2.14.1
+* Keras == 2.14.0 (comes installed with TensorFlow)
+* customtkinter == latest
+* Googletrans == 3.1.0a0
+* Other libraries == latest
+
+4. Upload all files under the "COM727-AE2" folder into your project
+5. Run "chatbot.py"
+6. Run "chatbot-hmi.py" for graphical user interface (GUI)
 
 (Any error occured while running could most likely be due to version control)
 
 ## To install required libraries
 pip install pandas numpy scikit-learn tensorflow keras matplotlib seaborn joblib nltk textblob imblearn statsmodels customtkinter folium selenium osmnx
-
-## How to access the chatbot application on Google Colab:
-
-1. Create a new notebook in Google Colab
-2. Upload "intents.json" and "health_tips.json" under "content" folder in Google Colab
-3. Copy and paste codes from "ANN_training.py", "chatbot.py" into your notebook (seperate cells!)
-4. Comment out the "Use for PyCharm" codes and un-comment the "Use for Google Colab" codes
-5. Run "ANN_training.py"
-6. Run "chatbot.py"
 
 
