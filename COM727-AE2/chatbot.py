@@ -8,7 +8,7 @@
 # Googletrans == 3.1.0a0
 # Other libraries == latest
 
-# Upload the following files from the "content" folder to the project file:
+# Upload the following files to the same project file:
 # chatbot_emergency_map.py, naive_bayes_model.py, integrated_ai_chatbot.py
 # medications.json, symptom_illness_dataset.csv, mental_health_tips_extended.csv,
 # symptom_checker_model.pkl, best_enhanced_symptom_model.pkl, model_comparison_results.pkl
