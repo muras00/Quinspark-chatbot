@@ -6,6 +6,17 @@
 # TensorFlow == 2.14.1
 # Keras == 2.14.0 (comes installed with TensorFlow)
 # Googletrans == 3.1.0a0
+# Other libraries == latest
+
+# Upload the following files from the "content" folder to the project file:
+# chatbot_emergency_map.py, naive_bayes_model.py, integrated_ai_chatbot.py
+# medications.json, symptom_illness_dataset.csv, mental_health_tips_extended.csv,
+# symptom_checker_model.pkl, best_enhanced_symptom_model.pkl, model_comparison_results.pkl
+# scaler.pkl, best_models.pkl, label_encoder_y.pkl, intents.json, health_tips.json,
+# instructions_words.pkl, instructions_classes.pkl, ANN_instructions_model.keras,
+# clustering_analysis.py, Disease_symptom_and_patient_profile_dataset.csv,
+# time_series_forecasting.py, time_series_symptoms.csv, condition_guidance.csv
+# nlp_model.pkl, nlp_vectorizer.pkl
 
 import random
 import json
@@ -15,7 +26,7 @@ import nltk
 import os
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
-import chatbot_emergency_map
+import chatbot_emergency_map # Upload the file "chatbot_emergency_map.py" under "content" folder
 import pandas as pd
 import joblib
 from sklearn.preprocessing import StandardScaler
@@ -25,11 +36,11 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 from googletrans import Translator
 import webbrowser
-import naive_bayes_model  # Import the module
-import nltk
+import naive_bayes_model  # Upload the file "naive_bayes_model.py" under "content" folder
+#import nltk
 import sys
 
-from integrated_ai_chatbot import (
+from integrated_ai_chatbot import ( # Upload the file "integrated_ai_chatbot.py" under "content" folder
     load_dataset,
     run_deep_learning_model,
     preprocess_data,
@@ -42,8 +53,8 @@ from integrated_ai_chatbot import (
     nlp_user_symptoms,
     sentiment_analysis
 )
-import nltk
-from googletrans import Translator
+#import nltk
+#from googletrans import Translator
 
 from integrated_ai_chatbot import train_nlp_model
 
