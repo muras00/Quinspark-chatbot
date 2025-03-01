@@ -19,7 +19,7 @@ cd Quinspark-chatbot
 * Googletrans == 3.1.0a0
 * Other libraries == latest
 
-4. Upload all files under the "COM727-AE2" folder into your project
+4. Upload all files under the "chatbot_code" folder into your project
 5. Run "chatbot.py"
 6. Run "chatbot-hmi.py" for graphical user interface (GUI)
 
