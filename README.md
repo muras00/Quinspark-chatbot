@@ -1,9 +1,9 @@
-# COM727-AE2
+# Quinspark chatbot
 
 ## Clone the Repository
-git clone https://github.com/2muras86/COM727-AE2.git
+git clone https://github.com/muras00/Quinspark-chatbot.git
 
-cd COM727-AE2
+cd Quinspark-chatbot
 
 ## How to access the chatbot application on PyCharm:
 
